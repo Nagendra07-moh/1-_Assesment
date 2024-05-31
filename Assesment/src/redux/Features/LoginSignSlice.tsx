@@ -11,7 +11,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addUser: (state, action: object): any => {
+    addUser: (state, action: any): any => {
       state.users.push(action.payload);
     },
   },

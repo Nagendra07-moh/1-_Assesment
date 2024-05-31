@@ -1,15 +1,21 @@
-import { View, Text } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Modal,
+  TouchableHighlight,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const Home = ({ navigation }) => {
-  const cart = useSelector((state) => state.cart.cart);
-  useEffect(() => {
-    console.log(cart);
-  }, []);
+const Home = ({ navigation }: any) => {
+  // const cart = useSelector((state: any) => state.cart.cart);
+  // useEffect(() => {
+  //   console.log(cart);
+  // }, []);
   return (
     <View>
-      <Text>Home</Text>
+      <Text></Text>
     </View>
   );
 };

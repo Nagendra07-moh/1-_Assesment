@@ -13,18 +13,18 @@ import { useSelector } from "react-redux";
 const Login = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state: any) => state.user.users);
 
   const HandleLogin = () => {
-    for (let user of users) {
-      if (user.email === email && user.password === password) {
-        navigation.navigate("Home");
-        return;
-      } else {
-        console.log("User not found");
-      }
-    }
-    // navigation.navigate("Home");
+    // for (let user of users) {
+    //   if (user.email === email && user.password === password) {
+    //     navigation.navigate("Home");
+    //     return;
+    //   } else {
+    //     console.log("User not found");
+    //   }
+    // }
+    navigation.navigate("Home");
   };
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
