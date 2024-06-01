@@ -26,7 +26,6 @@ const Home = ({ navigation }: any) => {
       refBottomSheet?.current?.scrollTo?.(-500);
     }
   };
-
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}></View>
