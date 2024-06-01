@@ -12,16 +12,26 @@ import {
   TextInput,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetRefProps } from "../Components/BottomSheet";
 import { FontAwesome } from "@expo/vector-icons";
+import { MarketTrend } from "../redux/api/marketTrendApiSlice";
+import { StockData } from "../Constants/Constants";
 const Home = ({ navigation }: any) => {
   const refBottomSheet = useRef<BottomSheetRefProps>(null);
-
+  const dispatch = useDispatch();
+  const TrendsData = useSelector((state) => state.trendSlice);
   useEffect(() => {
     triggerBottomSheet();
+    dispatch(MarketTrend());
+    console.log("This is Stock Data->", StockData);
   }, []);
+  useEffect(() => {
+    if (TrendsData.data != null) {
+      // console.log("This is Tred Data->", TrendsData.data.data);
+    }
+  }, [TrendsData]);
   const triggerBottomSheet = () => {
     const isActive = refBottomSheet?.current?.isActive?.();
     if (isActive) {
@@ -44,7 +54,7 @@ const Home = ({ navigation }: any) => {
             fontSize: 30,
           }}
         >
-          Stock List
+          Stocks List
         </Text>
         {/* <Button title="Show List" onPress={() => triggerBottomSheet()} /> */}
       </View>

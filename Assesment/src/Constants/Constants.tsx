@@ -1,0 +1,42 @@
+export const StockData: Array<object> = [
+  {
+    stockName: "Apple",
+    stockTicker: "AAPL",
+    stockFullName: "Apple Inc.",
+    stockPrice: 174.23,
+    priceChange: -1.56,
+    stockImage: "https://example.com/apple.png",
+  },
+  {
+    stockName: "Microsoft",
+    stockTicker: "MSFT",
+    stockFullName: "Microsoft Corporation",
+    stockPrice: 332.89,
+    priceChange: +2.34,
+    stockImage: "https://example.com/microsoft.png",
+  },
+  {
+    stockName: "Amazon",
+    stockTicker: "AMZN",
+    stockFullName: "Amazon.com, Inc.",
+    stockPrice: 120.96,
+    priceChange: -0.89,
+    stockImage: "https://example.com/amazon.png",
+  },
+  {
+    stockName: "Google",
+    stockTicker: "GOOGL",
+    stockFullName: "Alphabet Inc.",
+    stockPrice: 130.54,
+    priceChange: +1.45,
+    stockImage: "https://example.com/google.png",
+  },
+  {
+    stockName: "Tesla",
+    stockTicker: "TSLA",
+    stockFullName: "Tesla, Inc.",
+    stockPrice: 710.02,
+    priceChange: +3.67,
+    stockImage: "https://example.com/tesla.png",
+  },
+];

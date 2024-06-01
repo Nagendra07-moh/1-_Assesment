@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "../Features/LoginSignSlice";
 import addToCart from "../Features/CartSlice";
+import trendSlice from "../api/marketTrendApiSlice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     cart: addToCart,
+    trendSlice: trendSlice,
   },
 });
 
