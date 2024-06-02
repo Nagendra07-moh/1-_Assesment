@@ -14,6 +14,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Divider, Surface } from "react-native-paper";
 import { addItem, clearItems } from "../redux/Features/SelectedItemSlice";
 import { useDispatch } from "react-redux";
+import { Item } from "react-native-paper/lib/typescript/components/Drawer/Drawer";
 
 if (Platform.OS === "android") {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -79,8 +80,21 @@ const ProductTile: React.FC<{
                   ${data.stockPrice}
                 </Text>
               </View>
-              <View style={{ marginLeft: 10 }}>
-                <Text>{data.priceChange}</Text>
+              <View style={{ marginTop: 2, marginLeft: 15 }}>
+                {data.priceChange > 0 ? (
+                  <AntDesign name="caretup" size={12} color="green" />
+                ) : (
+                  <AntDesign name="caretdown" size={12} color="red" />
+                )}
+              </View>
+              <View
+                style={{
+                  marginLeft: 2,
+                }}
+              >
+                <Text style={{ color: data.priceChange > 0 ? "green" : "red" }}>
+                  {data.priceChange}
+                </Text>
               </View>
             </View>
           </View>

@@ -1,12 +1,19 @@
 import { View, Text, Image, TouchableHighlight } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
+import { addToCart } from "../redux/Features/CartSlice";
 
-const ProductDetails = (navigation: any) => {
+const ProductDetails = ({ navigation }: any) => {
   const Itemdata = useSelector(
     (state: any) => state.selectedItemSlice.selectedItem
   );
+  const dispatch = useDispatch();
+
+  const HandlePressEvent = () => {
+    dispatch(addToCart(Itemdata[0]));
+    console.log(navigation.navigate("Cart"));
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ marginTop: 10 }}>
@@ -96,7 +103,7 @@ const ProductDetails = (navigation: any) => {
             alignItems: "center",
             paddingVertical: 5,
           }}
-          onPress={() => console.log("good")}
+          onPress={() => HandlePressEvent()}
         >
           <Text
             style={{

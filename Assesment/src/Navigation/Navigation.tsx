@@ -69,7 +69,7 @@ const Navigation = () => {
           name="Cart"
           component={Cart}
           options={{
-            title: "Cart",
+            title: "Orders",
             headerStyle: {
               backgroundColor: "gray",
             },
