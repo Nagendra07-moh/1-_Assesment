@@ -22,7 +22,9 @@ const Login = ({ navigation }: any) => {
         navigation.navigate("Home");
         return;
       } else {
-        console.log("User not found");
+        // console.log("User not found");
+        Alert.alert("User not found");
+        return;
       }
     }
   };
