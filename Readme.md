@@ -11,3 +11,31 @@
 
 <img width="200" alt="Screenshot 2024-06-03 at 12 09 10 AM" src="https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/5ecf010c-4a5c-4405-93b2-3bd971615b40">
 <img width="200" alt="Screenshot 2024-06-03 at 12 14 17 AM" src="https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/3619b41e-6acf-453f-8570-f7b3d36f60b4">
+
+# Features
+
+1. Used React Native Reanimated 3 For custom Animations.
+2. Used React Native Gesture handler for handling the Gesture of animated Tile.
+3. used Redux Toolkit To manage global Context.
+4. used ReduxThunk To handle APi Calls.
+5. used React Native paper for Some UI.
+6. used Axios to fetch.
+
+# Used Debouncing in Search 
+### * made a custom hook for debouncing ..pl have a look
+
+# USP
+### * Production Level Folder Structure
+### * Production level code Qulity
+
+# How to Run:
+** Assuming You already have Xcode installed in your device 
+### 1.clone the Repo
+### 2. > cd 1-_Assesment
+### 3. > cd Assesment
+### 3. > npm install
+### 4. > npm start
+### 5. > i         //for ios simulator
+
+
+
