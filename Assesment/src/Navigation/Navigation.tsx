@@ -37,7 +37,17 @@ const Navigation = () => {
         <Stack.Screen
           name="ProductDetails"
           component={ProductDetails}
-          options={{ headerShown: false }}
+          options={{
+            title: "Details",
+            headerStyle: {
+              backgroundColor: "#ECD996",
+            },
+            headerTintColor: "black",
+            headerTitleStyle: {
+              fontWeight: "bold",
+              fontSize: 30,
+            },
+          }}
         />
 
         <Stack.Screen
