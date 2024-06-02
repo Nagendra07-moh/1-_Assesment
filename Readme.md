@@ -44,5 +44,9 @@ https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/eb0255d7-374f-42d
 ### 4. > npm start
 ### 5. > i         //for ios simulator
 
+# Released Apk location
+
+* Assesment/android/app/build/outputs/apk/release/app-release.apk
+
 
 
