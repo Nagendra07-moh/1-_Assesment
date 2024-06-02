@@ -62,9 +62,6 @@ const Home = ({ navigation }: any) => {
   };
 
   const [searchItem, setSearchItem] = useState([]);
-  useEffect(() => {
-    console.log(searchItem);
-  }, [searchItem]);
   const HandleSearch = (text: string) => {
     if (mp.has(text)) {
       const foundItem = mp.get(text);

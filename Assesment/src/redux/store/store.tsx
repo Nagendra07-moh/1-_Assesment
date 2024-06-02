@@ -3,6 +3,7 @@ import userReducer from "../Features/LoginSignSlice";
 import addToCart from "../Features/CartSlice";
 import trendSlice from "../api/marketTrendApiSlice";
 import SearchApi from "../api/SearchApiSlice";
+import selectedItemSlice from "../Features/SelectedItemSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     cart: addToCart,
     trendSlice: trendSlice,
     SearchApi: SearchApi,
+    selectedItemSlice: selectedItemSlice,
   },
 });
 

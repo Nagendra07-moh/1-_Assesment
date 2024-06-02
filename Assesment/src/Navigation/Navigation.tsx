@@ -6,6 +6,7 @@ import Login from "../Screens/Login";
 import SignUp from "../Screens/SignUp";
 import Home from "../Screens/Home";
 import Cart from "../Screens/Cart";
+import ProductDetails from "../Screens/ProductDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,11 @@ const Navigation = () => {
           component={Home}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
+          options={{ headerShown: false }}
+        />
 
         <Stack.Screen
           name="SignUp"
@@ -55,7 +61,7 @@ const Navigation = () => {
           options={{
             title: "Cart",
             headerStyle: {
-              backgroundColor: "Black",
+              backgroundColor: "gray",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {

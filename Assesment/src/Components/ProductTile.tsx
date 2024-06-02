@@ -10,9 +10,10 @@ import {
   Pressable,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Divider, Surface } from "react-native-paper";
+import { addItem, clearItems } from "../redux/Features/SelectedItemSlice";
+import { useDispatch } from "react-redux";
 
 if (Platform.OS === "android") {
   UIManager.setLayoutAnimationEnabledExperimental &&
@@ -27,12 +28,15 @@ const ProductTile: React.FC<{
   const [expanded, setExpanded] = useState(false);
 
   const toggleAccordion = () => {
-    if (isExpanded === true) {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-      setExpanded(!expanded);
-    }
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setExpanded(!expanded);
   };
-
+  const dispatch = useDispatch();
+  const HandleOnPress = () => {
+    navigation.navigate("ProductDetails");
+    dispatch(clearItems());
+    dispatch(addItem(data));
+  };
   return (
     <View
       style={{
@@ -47,7 +51,7 @@ const ProductTile: React.FC<{
     >
       <TouchableOpacity
         onLongPress={toggleAccordion}
-        onPress={expanded ? () => toggleAccordion() : () => null}
+        onPress={() => HandleOnPress()}
         style={{ padding: 10 }}
       >
         <View
@@ -84,8 +88,15 @@ const ProductTile: React.FC<{
       </TouchableOpacity>
       <TouchableOpacity onPress={toggleAccordion}>
         {expanded && (
-          <View>
-            <Text>Expanded</Text>
+          <View style={{ paddingHorizontal: 20 }}>
+            <Text style={{ fontSize: 20, fontWeight: "500" }}>Lorem ipsum</Text>
+            <View>
+              <Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+                animi possimus eos sunt quibusdam dolores voluptates?
+                Exercitationem dolorem velit autem. Labore est modi odio
+              </Text>
+            </View>
           </View>
         )}
       </TouchableOpacity>
