@@ -18,6 +18,9 @@ import BottomSheet, { BottomSheetRefProps } from "../Components/BottomSheet";
 import { FontAwesome } from "@expo/vector-icons";
 import { MarketTrend } from "../redux/api/marketTrendApiSlice";
 import { StockData } from "../Constants/Constants";
+import ProductTile from "../Components/ProductTile";
+import { AntDesign } from "@expo/vector-icons";
+
 const Home = ({ navigation }: any) => {
   const refBottomSheet = useRef<BottomSheetRefProps>(null);
   const dispatch = useDispatch();
@@ -25,13 +28,14 @@ const Home = ({ navigation }: any) => {
   useEffect(() => {
     triggerBottomSheet();
     dispatch(MarketTrend());
-    console.log("This is Stock Data->", StockData);
+    // console.log("This is Stock Data->", StockData);
   }, []);
-  useEffect(() => {
-    if (TrendsData.data != null) {
-      // console.log("This is Tred Data->", TrendsData.data.data);
-    }
-  }, [TrendsData]);
+  // useEffect(() => {
+  //   if (TrendsData.data != null) {
+  //     console.log("This is Tred Data->", TrendsData.data.data);
+  //   }
+  // }, [TrendsData]);
+
   const triggerBottomSheet = () => {
     const isActive = refBottomSheet?.current?.isActive?.();
     if (isActive) {
@@ -41,7 +45,13 @@ const Home = ({ navigation }: any) => {
     }
   };
   const [text, setText] = useState("");
+  const [showList, setShowList] = useState(true);
 
+  const handleFocus = () => {
+    setShowList(false);
+  };
+  const [minIndex, setMinIndex] = useState(0);
+  const [maxIndex, setMaxIndex] = useState(5);
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -56,7 +66,6 @@ const Home = ({ navigation }: any) => {
         >
           Stocks List
         </Text>
-        {/* <Button title="Show List" onPress={() => triggerBottomSheet()} /> */}
       </View>
 
       <BottomSheet ref={refBottomSheet}>
@@ -68,6 +77,7 @@ const Home = ({ navigation }: any) => {
               <FontAwesome name="search" size={24} color="gray" />
             </View>
             <TextInput
+              onFocus={handleFocus}
               style={{
                 height: 40,
                 borderColor: "gray",
@@ -87,18 +97,53 @@ const Home = ({ navigation }: any) => {
               placeholder="Search For Stocks"
             />
           </View>
-          {Array.from(Array(5)).map((val, key) => {
-            return (
-              <View key={key} style={styles.item}>
-                <View>
-                  <Text>Hari Irawan</Text>
-                  <Text>087666673246</Text>
-                </View>
-
-                <View style={styles.radioButton}></View>
-              </View>
-            );
-          })}
+          <View style={{ marginBottom: 50 }}>
+            {showList &&
+              StockData.map((item: any, index) => {
+                {
+                  if (index > minIndex && index < maxIndex) {
+                    return (
+                      <ProductTile
+                        navigation={navigation}
+                        data={item}
+                        key={index}
+                        isExpanded={false}
+                      />
+                    );
+                  }
+                }
+              })}
+          </View>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            marginHorizontal: 15,
+            marginVertical: 15,
+            alignSelf: "center",
+          }}
+        >
+          <View>
+            <TouchableOpacity
+              onPress={() => [
+                setMinIndex(minIndex - 5),
+                setMaxIndex(maxIndex - 5),
+              ]}
+            >
+              <AntDesign name="caretleft" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => [
+                setMinIndex(minIndex + 5),
+                setMaxIndex(maxIndex + 5),
+              ]}
+            >
+              <AntDesign name="caretright" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
         </View>
       </BottomSheet>
     </GestureHandlerRootView>
