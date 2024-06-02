@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableHighlight,
   Alert,
+  StatusBar,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Surface } from "react-native-paper";
@@ -103,6 +104,7 @@ const SignUp = ({ navigation }: any) => {
           </TouchableHighlight>
         </View>
       </Surface>
+      <StatusBar barStyle="dark-content" backgroundColor="#A188A6" />
     </View>
   );
 };
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 300,
     width: 350,
-    backgroundColor: "#009A5C",
+    backgroundColor: "#A188A6",
     borderRadius: 10,
     marginTop: 150,
     paddingHorizontal: 20,

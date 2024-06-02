@@ -10,6 +10,7 @@ import {
   RefreshControl,
   Button,
   TextInput,
+  StatusBar,
 } from "react-native";
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -44,15 +45,10 @@ const Home = ({ navigation }: any) => {
   const [showList, setShowList] = useState(true);
   const [page, setPage] = useState(1);
   const debouncedSearchTerm = useDebounce(text, 1000);
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      dispatch(SearchItemAPI(text));
-    }
-  }, [debouncedSearchTerm, dispatch]);
 
   const handleFocus = () => {
     setShowList(false);
-    dispatch(SearchItemAPI(text));
+    // dispatch(SearchItemAPI(text));
   };
 
   const [searchItem, setSearchItem] = useState([]);
@@ -179,6 +175,7 @@ const Home = ({ navigation }: any) => {
           </View>
         )}
       </BottomSheet>
+      <StatusBar barStyle="dark-content" backgroundColor="#90c3c8" />
     </GestureHandlerRootView>
   );
 };

@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableHighlight,
   Alert,
+  StatusBar,
 } from "react-native";
 import React, { useState } from "react";
 import { Surface } from "react-native-paper";
@@ -16,15 +17,14 @@ const Login = ({ navigation }: any) => {
   const users = useSelector((state: any) => state.user.users);
 
   const HandleLogin = () => {
-    // for (let user of users) {
-    //   if (user.email === email && user.password === password) {
-    //     navigation.navigate("Home");
-    //     return;
-    //   } else {
-    //     console.log("User not found");
-    //   }
-    // }
-    navigation.navigate("Home");
+    for (let user of users) {
+      if (user.email === email && user.password === password) {
+        navigation.navigate("Home");
+        return;
+      } else {
+        console.log("User not found");
+      }
+    }
   };
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
@@ -117,6 +117,7 @@ const Login = ({ navigation }: any) => {
           </TouchableHighlight>
         </View>
       </Surface>
+      <StatusBar barStyle="dark-content" backgroundColor="#8EB1C7" />
     </View>
   );
 };

@@ -56,7 +56,7 @@ const Navigation = () => {
           options={{
             title: "SignUp",
             headerStyle: {
-              backgroundColor: "#009A5C",
+              backgroundColor: "#A188A6",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {

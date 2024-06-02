@@ -1,4 +1,10 @@
-import { View, Text, TouchableHighlight, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  Pressable,
+  StatusBar,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductTile from "../Components/ProductTile";
@@ -99,6 +105,7 @@ const Cart = ({ navigation }: any) => {
           <FontAwesome6 name="check" size={30} color="black" />
         </Pressable>
       )}
+      <StatusBar barStyle="dark-content" backgroundColor="gray" />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableHighlight } from "react-native";
+import { View, Text, Image, TouchableHighlight, StatusBar } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AntDesign } from "@expo/vector-icons";
@@ -117,6 +117,7 @@ const ProductDetails = ({ navigation }: any) => {
           </Text>
         </TouchableHighlight>
       </View>
+      <StatusBar barStyle="dark-content" backgroundColor="#ECD996" />
     </View>
   );
 };
