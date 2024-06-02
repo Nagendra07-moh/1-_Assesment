@@ -1,10 +1,11 @@
-import { View, Text, TouchableHighlight } from "react-native";
+import { View, Text, TouchableHighlight, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductTile from "../Components/ProductTile";
 import { MaterialIcons } from "@expo/vector-icons";
 import { removeFromCart } from "../redux/Features/CartSlice";
 import SwipeButton from "rn-swipe-button";
+import { FontAwesome6 } from "@expo/vector-icons";
 const Cart = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: any) => state.cart.cart);
@@ -27,23 +28,7 @@ const Cart = ({ navigation }: any) => {
   );
   let forceResetLastButton = null;
 
-  const CheckoutButton = () => {
-    return (
-      <View
-        style={{
-          width: 100,
-          height: 30,
-          backgroundColor: "#C70039",
-          borderRadius: 5,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Text style={{ color: "#ffffff" }}>Checkout</Text>
-      </View>
-    );
-  };
-
+  const [showIconStart, setShowIconStart] = useState(false);
   const [color, setColor] = useState("#ECD996");
 
   const [title, setTitle] = useState("Swipe To Pay");
@@ -81,7 +66,7 @@ const Cart = ({ navigation }: any) => {
           thumbIconWidth={50}
           railBorderColor={color}
           railBackgroundColor={color}
-          onSwipeStart={() => setTitle("Released")}
+          onSwipeStart={() => [setTitle("Released"), setShowIconStart(false)]}
           thumbIconBackgroundColor="#FFFFFF"
           railFillBackgroundColor={"White"}
           railFillBorderColor={color}
@@ -92,6 +77,7 @@ const Cart = ({ navigation }: any) => {
             setTitle("Confirmed!"),
             setColor("#34C759"),
             setDisabled(true),
+            setShowIconStart(true),
           ]}
           onSwipeFail={() => [
             setTitle("Swipe To Pay"),
@@ -100,6 +86,19 @@ const Cart = ({ navigation }: any) => {
           ]}
         />
       </View>
+      {showIconStart && (
+        <Pressable
+          style={{
+            position: "absolute",
+            right: "15%",
+            zIndex: 10,
+            bottom: "8.5%",
+          }}
+          onLongPress={() => setShowIconStart(false)}
+        >
+          <FontAwesome6 name="check" size={30} color="black" />
+        </Pressable>
+      )}
     </View>
   );
 };
