@@ -17,24 +17,26 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet, { BottomSheetRefProps } from "../Components/BottomSheet";
 import { FontAwesome } from "@expo/vector-icons";
 import { MarketTrend } from "../redux/api/marketTrendApiSlice";
-import { StockData } from "../Constants/Constants";
+import { StockData, mp } from "../Constants/Constants";
 import ProductTile from "../Components/ProductTile";
 import { AntDesign } from "@expo/vector-icons";
+import { SearchItemAPI } from "../redux/api/SearchApiSlice";
+import { useDebounce } from "../Hooks/CustomDebounceHook";
 
 const Home = ({ navigation }: any) => {
   const refBottomSheet = useRef<BottomSheetRefProps>(null);
   const dispatch = useDispatch();
   const TrendsData = useSelector((state) => state.trendSlice);
+  const searchResult = useSelector((state) => state.SearchApi);
+
   useEffect(() => {
     triggerBottomSheet();
-    dispatch(MarketTrend());
-    // console.log("This is Stock Data->", StockData);
   }, []);
   // useEffect(() => {
-  //   if (TrendsData.data != null) {
-  //     console.log("This is Tred Data->", TrendsData.data.data);
+  //   if (searchResult.data != null) {
+  //     console.log("This is Search Data->", searchResult.data.data);
   //   }
-  // }, [TrendsData]);
+  // }, [searchResult]);
 
   const triggerBottomSheet = () => {
     const isActive = refBottomSheet?.current?.isActive?.();
@@ -47,9 +49,30 @@ const Home = ({ navigation }: any) => {
   const [text, setText] = useState("");
   const [showList, setShowList] = useState(true);
   const [page, setPage] = useState(1);
+  const debouncedSearchTerm = useDebounce(text, 1000);
+  // useEffect(() => {
+  //   if (debouncedSearchTerm) {
+  //     dispatch(SearchItemAPI(text));
+  //   }
+  // }, [debouncedSearchTerm, dispatch]);
 
   const handleFocus = () => {
     setShowList(false);
+    // dispatch(SearchItemAPI("Apple"));
+  };
+
+  const [searchItem, setSearchItem] = useState([]);
+  useEffect(() => {
+    console.log(searchItem);
+  }, [searchItem]);
+  const HandleSearch = (text: string) => {
+    if (mp.has(text)) {
+      const foundItem = mp.get(text);
+      let arr = [];
+      arr.push(foundItem);
+      setSearchItem(arr);
+    }
+    setText(text);
   };
   const [minIndex, setMinIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(5);
@@ -93,7 +116,7 @@ const Home = ({ navigation }: any) => {
                 paddingLeft: 40,
                 borderRadius: 10,
               }}
-              onChangeText={(text) => setText(text)}
+              onChangeText={(text) => HandleSearch(text)}
               value={text}
               placeholder="Search For Stocks"
             />
@@ -114,43 +137,56 @@ const Home = ({ navigation }: any) => {
                   }
                 }
               })}
+            {searchItem.length > 0 &&
+              searchItem.map((item: any, index) => {
+                return (
+                  <ProductTile
+                    navigation={navigation}
+                    data={item}
+                    key={index}
+                    isExpanded={true}
+                  />
+                );
+              })}
           </View>
         </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            marginHorizontal: 15,
-            marginVertical: 15,
-            alignSelf: "center",
-          }}
-        >
-          <View>
-            <TouchableOpacity
-              onPress={() => [
-                setMinIndex(minIndex - 5),
-                setMaxIndex(maxIndex - 5),
-                setPage(page - 1),
-              ]}
-            >
-              <AntDesign name="caretleft" size={24} color="black" />
-            </TouchableOpacity>
+        {showList && (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginHorizontal: 15,
+              marginVertical: 15,
+              alignSelf: "center",
+            }}
+          >
+            <View>
+              <TouchableOpacity
+                onPress={() => [
+                  setMinIndex(minIndex - 5),
+                  setMaxIndex(maxIndex - 5),
+                  setPage(page - 1),
+                ]}
+              >
+                <AntDesign name="caretleft" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+            <View style={{ justifyContent: "center" }}>
+              <Text style={{ fontSize: 15 }}>{page}</Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={() => [
+                  setMinIndex(minIndex + 5),
+                  setMaxIndex(maxIndex + 5),
+                  setPage(page + 1),
+                ]}
+              >
+                <AntDesign name="caretright" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={{ justifyContent: "center" }}>
-            <Text style={{ fontSize: 15 }}>{page}</Text>
-          </View>
-          <View>
-            <TouchableOpacity
-              onPress={() => [
-                setMinIndex(minIndex + 5),
-                setMaxIndex(maxIndex + 5),
-                setPage(page + 1),
-              ]}
-            >
-              <AntDesign name="caretright" size={24} color="black" />
-            </TouchableOpacity>
-          </View>
-        </View>
+        )}
       </BottomSheet>
     </GestureHandlerRootView>
   );

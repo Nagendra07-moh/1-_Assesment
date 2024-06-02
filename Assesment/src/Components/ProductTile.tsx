@@ -20,8 +20,8 @@ if (Platform.OS === "android") {
 }
 
 const ProductTile: React.FC<{
-  navigation: RouterProps;
-  data?: object;
+  navigation: any;
+  data?: any;
   isExpanded?: boolean;
 }> = ({ navigation, data, isExpanded = true }) => {
   const [expanded, setExpanded] = useState(false);
