@@ -32,12 +32,6 @@ const Home = ({ navigation }: any) => {
   useEffect(() => {
     triggerBottomSheet();
   }, []);
-  // useEffect(() => {
-  //   if (searchResult.data != null) {
-  //     console.log("This is Search Data->", searchResult.data.data);
-  //   }
-  // }, [searchResult]);
-
   const triggerBottomSheet = () => {
     const isActive = refBottomSheet?.current?.isActive?.();
     if (isActive) {
@@ -50,15 +44,15 @@ const Home = ({ navigation }: any) => {
   const [showList, setShowList] = useState(true);
   const [page, setPage] = useState(1);
   const debouncedSearchTerm = useDebounce(text, 1000);
-  // useEffect(() => {
-  //   if (debouncedSearchTerm) {
-  //     dispatch(SearchItemAPI(text));
-  //   }
-  // }, [debouncedSearchTerm, dispatch]);
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      dispatch(SearchItemAPI(text));
+    }
+  }, [debouncedSearchTerm, dispatch]);
 
   const handleFocus = () => {
     setShowList(false);
-    // dispatch(SearchItemAPI("Apple"));
+    dispatch(SearchItemAPI(text));
   };
 
   const [searchItem, setSearchItem] = useState([]);

@@ -16,7 +16,7 @@ const ProductDetails = ({ navigation }: any) => {
   };
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
-      <View style={{ marginTop: 10 }}>
+      <View style={{ marginTop: 10, marginLeft: 20 }}>
         <Image
           source={{ uri: Itemdata[0].stockImage }}
           style={{ width: 150, height: 150 }}
