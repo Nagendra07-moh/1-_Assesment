@@ -46,6 +46,7 @@ const Home = ({ navigation }: any) => {
   };
   const [text, setText] = useState("");
   const [showList, setShowList] = useState(true);
+  const [page, setPage] = useState(1);
 
   const handleFocus = () => {
     setShowList(false);
@@ -129,16 +130,21 @@ const Home = ({ navigation }: any) => {
               onPress={() => [
                 setMinIndex(minIndex - 5),
                 setMaxIndex(maxIndex - 5),
+                setPage(page - 1),
               ]}
             >
               <AntDesign name="caretleft" size={24} color="black" />
             </TouchableOpacity>
+          </View>
+          <View style={{ justifyContent: "center" }}>
+            <Text style={{ fontSize: 15 }}>{page}</Text>
           </View>
           <View>
             <TouchableOpacity
               onPress={() => [
                 setMinIndex(minIndex + 5),
                 setMaxIndex(maxIndex + 5),
+                setPage(page + 1),
               ]}
             >
               <AntDesign name="caretright" size={24} color="black" />
