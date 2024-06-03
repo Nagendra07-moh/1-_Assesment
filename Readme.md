@@ -34,9 +34,9 @@ https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/eb0255d7-374f-42d
 6. used Axios to fetch.
 
 # Used Debouncing in Search 
-### * made a custom hook for debouncing ..pl have a look
+### * made a custom hook for debouncing              ...pl have a look
 
-# USP
+# HIGHLIGHTS
 ### * Production Level Folder Structure
 ### * Production level code Qulity
 
@@ -49,7 +49,7 @@ https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/eb0255d7-374f-42d
 ### 4. > npm start
 ### 5. > i         //for ios simulator
 
-# Released Apk location
+# Released Apk path
 
 * Assesment/android/app/build/outputs/apk/release/app-release.apk
 
