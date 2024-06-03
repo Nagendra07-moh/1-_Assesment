@@ -9,6 +9,11 @@
 
 https://github.com/Nagendra07-moh/1-_Assesment/assets/62485736/eb0255d7-374f-42d7-89a0-914734cbc8c7
 
+# Login
+* Nagendra@gmail.com
+* 12345
+* SignUp also Works 
+
 
 # Folder Structure
 
